@@ -10,46 +10,57 @@ public class User {
         StudentList studentList = StudentList.getInstance();
         CourseList courseList = CourseList.getInstance();
 
-        int choice;
+        String choice;
+        label:
         while (true) {
             System.out.print("Type 1 to add a student \n" +
                     "Type 2 to add a course \n" +
+                    "Type 3 to show all students \n" +
                     "Type 0 to exit:");
-            choice = userInput.nextInt();
-            if (choice == 0) {
-                break;
-            } else if (choice == 1) {
-                Student studentInfo = studentInfo();
-                studentList.addToStudents(studentInfo);
-                System.out.println(studentInfo.getName() + " was added!!");
-            } else if (choice == 2) {
-                Course courseInfo = courseInfo();
-                courseList.addToCourses(courseInfo);
-                System.out.println(courseInfo.getName() + " course was added");
-            } else {
-                System.out.println("Invalid number please type again");
+            choice = userInput.nextLine();
+            switch (choice) {
+                case "0":
+                    break label;
+                case "1":
+                    Student studentInfo = studentInfo();
+                    studentList.addToStudents(studentInfo);
+                    System.out.println(studentInfo.getName() + " was added!!");
+                    break;
+                case "2":
+                    Course courseInfo = courseInfo();
+                    courseList.addToCourses(courseInfo);
+                    System.out.println(courseInfo.getName() + " course was added");
+                    break;
+                case "3":
+                    System.out.println("Number:" + studentList.getStudents().size());
+                    for (int i = 0; i < studentList.getStudents().size(); i++) {
+                        System.out.println(studentList.getStudents().get(i).getName());
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid number please type again");
+                    break;
             }
         }
     }
 
     public Student studentInfo() {
-        String nothing = userInput.nextLine();
         System.out.print("Type student id:");
         String studentId = userInput.nextLine();
         System.out.print("Type student name:");
         String studentName = userInput.nextLine();
         System.out.print("Type student birthday:");
         String studentBirthday = userInput.nextLine();
-        return Student.getInstance(studentId, studentName, studentBirthday);
+        return new Student(studentId, studentName, studentBirthday);
     }
 
-    public Course courseInfo(){
+    public Course courseInfo() {
         System.out.println("Type course id");
         String courseId = userInput.nextLine();
         System.out.println("Type course name:");
         String courseName = userInput.nextLine();
         System.out.println("Type number of credit");
         int numberOfCredit = userInput.nextInt();
-        return Course.getInstance(courseId,courseName,numberOfCredit);
+        return new Course(courseId, courseName, numberOfCredit);
     }
 }
