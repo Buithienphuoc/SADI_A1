@@ -1,4 +1,7 @@
-package com.company;
+package com.company.list;
+
+import com.company.manager.StudentEnrolmentManager;
+import com.company.unit.StudentEnrolment;
 
 import java.util.ArrayList;
 

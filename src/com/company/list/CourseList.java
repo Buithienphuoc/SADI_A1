@@ -1,4 +1,6 @@
-package com.company;
+package com.company.list;
+
+import com.company.unit.Course;
 
 import java.util.ArrayList;
 import java.util.Scanner;
