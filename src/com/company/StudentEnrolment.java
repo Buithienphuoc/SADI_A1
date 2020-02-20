@@ -1,4 +1,4 @@
-package com.company.unit;
+package com.company;
 
 
 public class StudentEnrolment {

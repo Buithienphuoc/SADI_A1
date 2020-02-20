@@ -1,8 +1,5 @@
 package com.company;
 
-import com.company.list.CourseList;
-import com.company.list.StudentList;
-
 import java.util.Scanner;
 
 public class User {

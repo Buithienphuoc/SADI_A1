@@ -1,6 +1,4 @@
-package com.company.list;
-
-import com.company.unit.Student;
+package com.company;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -21,7 +19,11 @@ public class StudentList {
         students = new ArrayList<>();
     }
 
-    public String getName(int index) {
+    public ArrayList<Student> getStudents() {
+        return this.students;
+    }
+
+    public String getStudentName(int index) {
         return this.students.get(index).getName();
     }
 
@@ -42,9 +44,9 @@ public class StudentList {
     }
 
     public void showAll(){
-        System.out.println("There are " + students.size()+ " students in this list");
-        for (int i = 0; i < students.size(); i++) {
-            System.out.println(getName(i));
+        System.out.println("There are " + studentList.getStudents().size()+ " students in this list");
+        for (int i = 0; i < studentList.getStudents().size(); i++) {
+            System.out.println(studentList.getStudentName(i));
         }
     }
 
