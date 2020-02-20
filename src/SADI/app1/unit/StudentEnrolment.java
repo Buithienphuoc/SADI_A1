@@ -1,8 +1,5 @@
-package com.company.unit;
+package SADI.app1.unit;
 
-
-import com.company.unit.Course;
-import com.company.unit.Student;
 
 public class StudentEnrolment {
     private Student student;

@@ -1,6 +1,6 @@
-package com.company.list;
+package SADI.app1.list;
 
-import com.company.unit.Student;
+import SADI.app1.unit.Student;
 
 import java.util.ArrayList;
 import java.util.Scanner;

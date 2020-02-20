@@ -1,7 +1,7 @@
-package com.company.list;
+package SADI.app1.list;
 
-import com.company.manager.StudentEnrolmentManager;
-import com.company.unit.StudentEnrolment;
+import SADI.app1.manager.StudentEnrolmentManager;
+import SADI.app1.unit.StudentEnrolment;
 
 import java.util.ArrayList;
 

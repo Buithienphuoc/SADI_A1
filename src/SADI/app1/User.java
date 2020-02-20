@@ -1,7 +1,7 @@
-package com.company;
+package SADI.app1;
 
-import com.company.list.CourseList;
-import com.company.list.StudentList;
+import SADI.app1.list.CourseList;
+import SADI.app1.list.StudentList;
 
 import java.util.Scanner;
 
