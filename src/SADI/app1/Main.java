@@ -1,4 +1,4 @@
-package com.company;
+package SADI.app1;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package com.company.unit;
+package SADI.app1.unit;
 
 public class Course {
     private String id;
