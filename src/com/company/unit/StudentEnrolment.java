@@ -1,5 +1,8 @@
-package com.company;
+package com.company.unit;
 
+
+import com.company.unit.Course;
+import com.company.unit.Student;
 
 public class StudentEnrolment {
     private Student student;
