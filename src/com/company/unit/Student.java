@@ -1,6 +1,4 @@
-package com.company;
-
-import java.util.Date;
+package com.company.unit;
 
 public class Student {
     private String id;

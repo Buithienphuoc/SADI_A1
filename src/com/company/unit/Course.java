@@ -1,4 +1,4 @@
-package com.company;
+package com.company.unit;
 
 public class Course {
     private String id;
