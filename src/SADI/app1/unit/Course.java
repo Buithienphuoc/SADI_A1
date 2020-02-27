@@ -1,6 +1,6 @@
 package SADI.app1.unit;
 
-public class Course {
+public class Course extends AbstractUnit{
     private String id;
     private String name;
     private int numberOfCredit;

@@ -5,11 +5,11 @@ import SADI.app1.unit.StudentEnrolment;
 import java.util.ArrayList;
 
 public interface StudentEnrolmentManager {
-    void add(StudentEnrolment enrolment);
+    void add();
 
     void update();
 
-    void getOne();
+    StudentEnrolment getOne(String studentID, String courseID);
 
     ArrayList<StudentEnrolment> getAll();
 }
