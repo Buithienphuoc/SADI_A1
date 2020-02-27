@@ -35,4 +35,12 @@ public class StudentEnrolment {
     public void setSemester(String semester) {
         this.semester = semester;
     }
+
+    public String getStudentID(){
+        return getStudent().getId();
+    }
+
+    public String getCourseID(){
+        return getStudent().getId();
+    }
 }
