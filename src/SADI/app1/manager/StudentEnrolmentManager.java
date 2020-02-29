@@ -9,7 +9,7 @@ public interface StudentEnrolmentManager {
 
     void update();
 
-    StudentEnrolment getOne(String studentID, String courseID);
+    StudentEnrolment getOne(StudentEnrolment userInput);
 
     ArrayList<StudentEnrolment> getAll();
 }

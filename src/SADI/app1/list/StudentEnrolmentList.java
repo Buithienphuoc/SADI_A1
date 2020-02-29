@@ -4,7 +4,6 @@ import SADI.app1.manager.StudentEnrolmentManager;
 import SADI.app1.unit.Course;
 import SADI.app1.unit.Student;
 import SADI.app1.unit.StudentEnrolment;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -35,9 +34,9 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
 
     }
 
-    public StudentEnrolment getOne(String studentID, String courseID) {
+    public StudentEnrolment getOne(StudentEnrolment userInput) {
         for (StudentEnrolment enrolment : enrolments) {
-            if (enrolment.getStudentID().equals(studentID) && enrolment.getCourseID().equals(courseID)) {
+            if (userInput == enrolment) {
                 return enrolment;
             }
         }
@@ -48,27 +47,36 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
         return enrolments;
     }
 
-    public void delete(){
-
+    public void delete() {
+        StudentEnrolment userInput = userInput();
+        enrolments.remove(userInput);
     }
 
-    public StudentEnrolment userInput(){
+    public StudentEnrolment userInput() {
         Student student = students.userInput();
         Course course = courses.userInput();
         String semester = userInput.nextLine();
         return new StudentEnrolment(student, course, semester);
     }
 
-    public void findByStudentID(){
-
+    public void showAll() {
+        for (int i = 0; i < enrolments.size(); i++) {
+            System.out.println("Enrolment " + i + ": \n"
+                    + "Student name:" + enrolments.get(i).getStudent().getName() + "\n"
+                    + "Course:" + enrolments.get(i).getCourse().getName() + "\n"
+                    + "Semester:" + enrolments.get(i).getSemester());
+        }
     }
 
-    public void showAll(){
-        for (int i = 0; i < enrolments.size() ; i++) {
-            System.out.println(" enrolment "+ i +": \n"
-                    + "Student name:"+ enrolments.get(i).getStudent().getName() +"\n"
-                    + "Course:"+enrolments.get(i).getCourse() + "\n"
-                    + "Semester:"+enrolments.get(i).getSemester());
+    public void showOne() {
+        StudentEnrolment userInput = userInput();
+        if (getOne(userInput) != null) {
+            System.out.println("Enrolment information: \n"
+                    + "Student ID:" + userInput.getStudentID() + "\n"
+                    + "Student name:" + userInput.getStudent().getName() + "\n"
+                    + "Course ID" + userInput.getCourseID() + "\n"
+                    + "Course name:" + userInput.getCourse().getName());
         }
+        ;
     }
 }
