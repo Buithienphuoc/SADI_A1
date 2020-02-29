@@ -1,6 +1,7 @@
 package SADI.app1;
 
-import SADI.app1.list.CourseList;
+
+import SADI.app1.list.StudentEnrolmentList;
 import SADI.app1.list.StudentList;
 
 import java.util.Scanner;
@@ -9,32 +10,34 @@ public class User {
 
     private Scanner userInput = new Scanner(System.in);
     private StudentList studentList = StudentList.getInstance();
-    private CourseList courseList = CourseList.getInstance();
+    private StudentEnrolmentList enrolmentList = StudentEnrolmentList.getInstance();
 
     public void Use() {
         String choice;
         label:
         while (true) {
-            System.out.print("Type 1 to add a student \n" +
-                    "Type 2 to add a course \n" +
-                    "Type 3 to show all students \n" +
-                    "Type 4 to show all courses \n" +
+            System.out.print("Type 1 enrol student \n" +
+                    "Type 2 to show all enrolment\n" +
+                    "Type 3 to show an enrolment \n" +
+                    "Type 4 to delete enrolment \n" +
+                    "Type 5 to show enrolments of a student \n"+
+                    "Type 6 to show enrolments in 1 semester \n"+
                     "Type 0 to exit:");
             choice = userInput.nextLine();
             switch (choice) {
                 case "0":
                     break label;
                 case "1":
-                    studentList.addToList();
+                    enrolmentList.add();
                     break;
                 case "2":
-                    courseList.addToList();
+                    enrolmentList.showAll();
                     break;
                 case "3":
-                    studentList.showAll();
+                    enrolmentList.showOne();
                     break;
                 case "4":
-                    courseList.showAll();
+                    enrolmentList.delete();
                     break;
                 default:
                     System.out.println("Invalid number please type again");
