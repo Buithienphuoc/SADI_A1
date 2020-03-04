@@ -43,4 +43,8 @@ public class StudentEnrolment {
     public String getCourseID(){
         return getStudent().getId();
     }
+
+    public String getCourseName(){
+        return getCourse().getName();
+    }
 }

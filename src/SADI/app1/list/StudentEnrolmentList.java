@@ -47,6 +47,15 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
         return enrolments;
     }
 
+    public Boolean isExist(Student student){
+        for (StudentEnrolment enrolment : enrolments) {
+            if (enrolment.getStudent() == student) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void delete() {
         StudentEnrolment userInput = userInput();
         enrolments.remove(userInput);
@@ -76,6 +85,29 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
                     + "Student name:" + userInput.getStudent().getName() + "\n"
                     + "Course ID" + userInput.getCourseID() + "\n"
                     + "Course name:" + userInput.getCourse().getName());
+        }
+    }
+
+    public void showEnrolmentByStudent(Student student){
+        System.out.println("The course list:");
+        for (StudentEnrolment enrolment : enrolments) {
+            if (student == enrolment.getStudent()){
+                System.out.println("ID:"+ enrolment.getCourseID() +"\n"
+                        + " Name:" + enrolment.getCourseName() +"\n"
+                        + " Number of credit:" + enrolment.getCourse().getNumberOfCredit() +"\n"
+                        + " Semester:" +enrolment.getSemester());
+            }
+        }
+    }
+
+    public void showByStudent() {
+        System.out.println("Please type student information to check:");
+        Student student = students.userInput();
+        if (!isExist(student)) {
+            System.out.println("Cannot find this student!!");
+        }
+        else {
+            showEnrolmentByStudent(student);
         }
     }
 }
