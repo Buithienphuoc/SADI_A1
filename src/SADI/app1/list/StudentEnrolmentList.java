@@ -60,7 +60,7 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
     }
 
     public void showAll() {
-        for (int i = 0; i < enrolments.size(); i++) {
+        for (int i = 0; i < getAll().size(); i++) {
             System.out.println("Enrolment " + i + ": \n"
                     + "Student name:" + enrolments.get(i).getStudent().getName() + "\n"
                     + "Course:" + enrolments.get(i).getCourse().getName() + "\n"
@@ -77,6 +77,5 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
                     + "Course ID" + userInput.getCourseID() + "\n"
                     + "Course name:" + userInput.getCourse().getName());
         }
-        ;
     }
 }

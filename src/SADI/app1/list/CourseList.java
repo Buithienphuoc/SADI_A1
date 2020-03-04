@@ -44,13 +44,14 @@ public class CourseList {
         System.out.println(userInput.getName() + " course was added!!");
     }
     public Course userInput() {
-        System.out.println("Type course id");
+        System.out.print("Type course id");
         String courseId = userInput.nextLine();
-        System.out.println("Type course name:");
+        System.out.print("Type course name:");
         String courseName = userInput.nextLine();
-        System.out.println("Type number of credit");
-        int numberOfCredit = userInput.nextInt();
-        return new Course(courseId, courseName, numberOfCredit);
+        System.out.print("Type number of credit");
+        String numberOfCredit = userInput.nextLine();
+        int credit = Integer.parseInt(numberOfCredit);
+        return new Course(courseId, courseName, credit);
     }
 
     public void showAll(){

@@ -2,14 +2,12 @@ package SADI.app1;
 
 
 import SADI.app1.list.StudentEnrolmentList;
-import SADI.app1.list.StudentList;
 
 import java.util.Scanner;
 
 public class User {
 
     private Scanner userInput = new Scanner(System.in);
-    private StudentList studentList = StudentList.getInstance();
     private StudentEnrolmentList enrolmentList = StudentEnrolmentList.getInstance();
 
     public void Use() {
@@ -22,7 +20,8 @@ public class User {
                     "Type 4 to delete enrolment \n" +
                     "Type 5 to show enrolments of a student \n"+
                     "Type 6 to show enrolments in 1 semester \n"+
-                    "Type 0 to exit:");
+                    "Type 0 to exit \n"+
+                    "Choice:");
             choice = userInput.nextLine();
             switch (choice) {
                 case "0":
