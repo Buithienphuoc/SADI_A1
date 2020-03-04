@@ -38,6 +38,8 @@ public class User {
                 case "4":
                     enrolmentList.delete();
                     break;
+                case "5":
+                    enrolmentList.showByStudent();
                 default:
                     System.out.println("Invalid number please type again");
                     break;
