@@ -47,7 +47,7 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
         return enrolments;
     }
 
-    public Boolean isExist(Student student){
+    public Boolean isExistStudent(Student student){
         for (StudentEnrolment enrolment : enrolments) {
             if (enrolment.getStudent() == student) {
                 return true;
@@ -103,11 +103,23 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
     public void showByStudent() {
         System.out.println("Please type student information to check:");
         Student student = students.userInput();
-        if (!isExist(student)) {
+        if (!isExistStudent(student)) {
             System.out.println("Cannot find this student!!");
         }
         else {
             showEnrolmentByStudent(student);
+        }
+    }
+
+    public void showBySemester(){
+        System.out.print("Semester you want to find");
+        String inputSemester = userInput.nextLine();
+        for (StudentEnrolment enrolment : enrolments) {
+            if (inputSemester.equals(enrolment.getSemester())) {
+                System.out.println("Enrolment information in" + inputSemester +"semester" + ":\n" +
+                        "StudentID:" + enrolment.getStudentID() + "\n" +
+                        "CourseID:" + enrolment.getCourseID());
+            }
         }
     }
 }
