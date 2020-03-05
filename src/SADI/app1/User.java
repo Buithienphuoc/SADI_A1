@@ -40,6 +40,10 @@ public class User {
                     break;
                 case "5":
                     enrolmentList.showByStudent();
+                    break;
+                case "6":
+                    enrolmentList.showBySemester();
+                    break;
                 default:
                     System.out.println("Invalid number please type again");
                     break;
