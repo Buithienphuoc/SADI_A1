@@ -10,9 +10,9 @@ import java.util.Scanner;
 public class StudentEnrolmentList implements StudentEnrolmentManager {
     private Scanner userInput = new Scanner(System.in);
     private static StudentEnrolmentList enrolmentList;
-    private ArrayList<StudentEnrolment> enrolments;
     private StudentList students = StudentList.getInstance();
     private CourseList courses = CourseList.getInstance();
+    private ArrayList<StudentEnrolment> enrolments = new ArrayList<>();
 
     public static StudentEnrolmentList getInstance() {
         if (enrolmentList == null) {
@@ -21,13 +21,15 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
         return enrolmentList;
     }
 
-    public StudentEnrolmentList() {
-        enrolments = new ArrayList<>();
-    }
-
     public void add() {
         StudentEnrolment newEnrolment = userInput();
-        enrolments.add(newEnrolment);
+        try {
+            enrolments.add(newEnrolment);
+            System.out.println("Added successfully!!");
+        }
+        catch(Exception e){
+            System.out.println("Something wrong");
+        }
     }
 
     public void update() {

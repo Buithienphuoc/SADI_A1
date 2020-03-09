@@ -46,7 +46,6 @@ public class User {
                     break;
                 default:
                     System.out.println("Invalid number please type again");
-                    break;
             }
         }
     }

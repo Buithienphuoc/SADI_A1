@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class CourseList {
     private Scanner userInput = new Scanner(System.in);
     private static CourseList courseList;
-    private ArrayList<Course> courses;
+    private ArrayList<Course> courses = new ArrayList<>();
 
     public static CourseList getInstance() {
         if (courseList == null)
@@ -44,11 +44,11 @@ public class CourseList {
         System.out.println(userInput.getName() + " course was added!!");
     }
     public Course userInput() {
-        System.out.print("Type course id");
+        System.out.print("Type course id:");
         String courseId = userInput.nextLine();
         System.out.print("Type course name:");
         String courseName = userInput.nextLine();
-        System.out.print("Type number of credit");
+        System.out.print("Type number of credit:");
         String numberOfCredit = userInput.nextLine();
         int credit = Integer.parseInt(numberOfCredit);
         return new Course(courseId, courseName, credit);
