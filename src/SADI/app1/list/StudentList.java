@@ -8,17 +8,13 @@ import java.util.Scanner;
 public class StudentList {
     private Scanner userInput = new Scanner(System.in);
     private static StudentList studentList;
-    private ArrayList<Student> students;
+    private ArrayList<Student> students = new ArrayList<>();
 
     public static StudentList getInstance() {
         if (studentList == null)
             studentList = new StudentList();
 
         return studentList;
-    }
-
-    private StudentList() {
-        students = new ArrayList<>();
     }
 
     public ArrayList<Student> getStudents() {
