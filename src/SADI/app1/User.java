@@ -23,7 +23,8 @@ public class User {
                         "Type 6 to show enrolments in 1 semester \n" +
                         "Type 0 to exit \n" +
                         "Choice:");
-                choice = userInput.nextInt();
+                String user_choice = userInput.nextLine();
+                choice = Integer.parseInt(user_choice);
                 switch (choice) {
                     case 0:
                         break label;
@@ -49,7 +50,6 @@ public class User {
             }
             catch (Exception e) {
                 System.out.println("Something wrong please try again");
-                break ;
             }
         }
     }
