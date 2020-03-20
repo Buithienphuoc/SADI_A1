@@ -40,6 +40,10 @@ public class StudentEnrolment {
         return getStudent().getId();
     }
 
+    public String getStudentName(){
+        return getStudent().getName();
+    }
+
     public String getCourseID(){
         return getStudent().getId();
     }

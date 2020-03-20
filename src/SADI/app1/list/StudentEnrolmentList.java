@@ -22,7 +22,7 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
     }
 
     public void add() {
-        StudentEnrolment newEnrolment = userInput();
+        StudentEnrolment newEnrolment = userInputEnrolment();
         try {
             enrolments.add(newEnrolment);
             System.out.println("Added successfully!!");
@@ -59,28 +59,34 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
     }
 
     public void delete() {
-        StudentEnrolment userInput = userInput();
+        StudentEnrolment userInput = userInputEnrolment();
         enrolments.remove(userInput);
     }
 
-    public StudentEnrolment userInput() {
+    public StudentEnrolment userInputEnrolment() {
         Student student = students.userInput();
         Course course = courses.userInput();
+        System.out.print("Semester:");
         String semester = userInput.nextLine();
         return new StudentEnrolment(student, course, semester);
     }
 
     public void showAll() {
         for (int i = 0; i < getAll().size(); i++) {
-            System.out.println("Enrolment " + i + ": \n"
-                    + "Student name:" + enrolments.get(i).getStudent().getName() + "\n"
-                    + "Course:" + enrolments.get(i).getCourse().getName() + "\n"
-                    + "Semester:" + enrolments.get(i).getSemester());
+            if (enrolments.isEmpty()){
+                System.out.println("There is no enrolment, cannot display !!");
+            }
+            else {
+                System.out.println("Enrolment " + i + ": \n"
+                        + "Student name:" + enrolments.get(i).getStudentName() + "\n"
+                        + "Course:" + enrolments.get(i).getCourseName() + "\n"
+                        + "Semester:" + enrolments.get(i).getSemester());
+            }
         }
     }
 
     public void showOne() {
-        StudentEnrolment userInput = userInput();
+        StudentEnrolment userInput = userInputEnrolment();
         if (getOne(userInput) != null) {
             System.out.println("Enrolment information: \n"
                     + "Student ID:" + userInput.getStudentID() + "\n"
@@ -95,9 +101,9 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
         for (StudentEnrolment enrolment : enrolments) {
             if (student == enrolment.getStudent()){
                 System.out.println("ID:"+ enrolment.getCourseID() +"\n"
-                        + " Name:" + enrolment.getCourseName() +"\n"
-                        + " Number of credit:" + enrolment.getCourse().getNumberOfCredit() +"\n"
-                        + " Semester:" +enrolment.getSemester());
+                    + " Name:" + enrolment.getCourseName() +"\n"
+                    + " Number of credit:" + enrolment.getCourse().getNumberOfCredit() +"\n"
+                    + " Semester:" +enrolment.getSemester());
             }
         }
     }
