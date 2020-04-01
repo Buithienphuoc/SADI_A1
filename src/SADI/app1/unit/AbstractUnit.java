@@ -1,11 +1,14 @@
 package SADI.app1.unit;
 
 public abstract class AbstractUnit {
-    private String id;
-    private String name;
+    public String id;
+    public String name;
+
+    public AbstractUnit(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public abstract String getId();
-    public abstract void setId(String id);
     public abstract String getName();
-    public abstract void setName(String id);
 }

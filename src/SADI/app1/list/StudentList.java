@@ -1,6 +1,7 @@
 package SADI.app1.list;
 
 import SADI.app1.unit.Student;
+import SADI.app1.unit.StudentEnrolment;
 
 import java.util.Scanner;
 
