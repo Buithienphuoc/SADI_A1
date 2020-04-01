@@ -1,6 +1,6 @@
 package SADI.app1.unit;
 
-
+/* 3. StudentEnrollment class that has 3 properties: student , course, semester (2018A, 2018B etc. This is a string) */
 public class StudentEnrolment {
     private Student student;
     private Course course;
@@ -16,24 +16,12 @@ public class StudentEnrolment {
         return student;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
     public Course getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
     public String getSemester() {
         return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
     }
 
     public String getStudentID(){
@@ -45,7 +33,7 @@ public class StudentEnrolment {
     }
 
     public String getCourseID(){
-        return getStudent().getId();
+        return getCourse().getId();
     }
 
     public String getCourseName(){
