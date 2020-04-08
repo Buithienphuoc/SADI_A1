@@ -223,6 +223,19 @@ class StudentEnrolmentListTest {
 
     @Test
     void showCoursesOfSemesterTest() {
+        String mockSemester = "2019A";
+        System.out.println("The course list:");
+        List<Course> courses = new ArrayList<>();
+        for (StudentEnrolment enrolment : testList.getAll()) {
+            if (mockSemester.equals(enrolment.getSemester())){
+                courses.add(enrolment.getCourse());
+            }
+        }
+        System.out.println("CourseID CourseName NumberOfCredit");
+        for (Course course: courses){
+            System.out.println(course.getId()+" "+course.getName()+" "+ course.getNumberOfCredit() );
+        }
+        csvReport.coursesOfStudent(courses, "reports/CoursesOfferedInSemester/"+mockSemester+".csv");
     }
 
     @Test
