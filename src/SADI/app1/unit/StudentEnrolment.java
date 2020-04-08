@@ -12,6 +12,17 @@ public class StudentEnrolment {
         this.semester = semester;
     }
 
+    @Override
+    public boolean equals(Object o){
+        // self check
+        if(this == o){ return true; } else
+            // null check
+            // field comparison
+            if(o == null){ return false;} else
+                // type check and cast
+                return getClass() == o.getClass();
+    }
+
     public Student getStudent() {
         return student;
     }
@@ -28,15 +39,7 @@ public class StudentEnrolment {
         return getStudent().getId();
     }
 
-    public String getStudentName(){
-        return getStudent().getName();
-    }
-
     public String getCourseID(){
         return getCourse().getId();
-    }
-
-    public String getCourseName(){
-        return getCourse().getName();
     }
 }
