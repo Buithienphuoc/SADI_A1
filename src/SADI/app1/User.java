@@ -14,18 +14,18 @@ public class User {
     private StudentEnrolmentList enrolmentList = StudentEnrolmentList.getInstance();
 
     public void Use() {
-        addExamples();
+        /* 6. When starting the program, sample students and courses should be populated.
+        There is no need to build CRUD functionality for student and course
+        */ addExamples();
         int choice;
         label:
         while (true) {
             try{
             /* 4. Build functionality to enroll students in courses. */
-                System.out.print("Type 1 enrol student \n" +
-                        "Type 2 to update enrolment\n" +
-                        "Type 3 to delete enrolment \n" +
-                        "Type 4 to show course list of a student in 1 semester \n"+
-                        "Type 5 to show student list of a course in 1 semester \n"+
-                        "Type 6 to show all courses in 1 semester\n" +
+                System.out.print("Type 1 to view courses of a student in a semester \n" +
+                        "Type 2 to view students of a course in a semester \n" +
+                        "Type 3 to view courses offered in a semester \n" +
+                        "Type 4 to update enrolment information \n"+
                         "Type 0 to exit \n" +
                         "Choice:");
                 String user_choice = userInput.nextLine();
@@ -33,25 +33,21 @@ public class User {
                 switch (choice) {
                     case 0:
                         break label;
-            /* 4. This functionality will basically add/update/delete into StudentEnrollment list.  */
-                    case 1:
-                        enrolmentList.add();
-                        break;
-                    case 2:
-                        enrolmentList.update();
-                        break;
-                    case 3:
-                        enrolmentList.delete();
-                        break;
             /* 5. Print all courses for 1 student in 1 semester.*/
-                    case 4:
-                        enrolmentList.showCoursesOfStudent();
+                    case 1:
+                        enrolmentList.coursesOfStudent();
                         break;
             /* 5. Print all students of 1 course in 1 semester. */
-                    case 5:
-                        enrolmentList.showStudentsOfCourse();
+                    case 2:
+                        enrolmentList.studentsOfCourse();
                         break;
             /* 5. Prints all courses offered in 1 semester.*/
+                    case 3:
+                        enrolmentList.coursesOfSemester();
+            /* 4. This functionality will basically add/update/delete into StudentEnrollment list.  */
+                    case 4:
+                        enrolmentList.update();
+                        break;
                 }
             }
             catch (Exception e) {

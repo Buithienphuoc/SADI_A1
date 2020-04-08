@@ -10,7 +10,7 @@ import java.util.Scanner;
 import SADI.app1.CSVreport;
 
 /* 3 This is an associate class. To keep all enrollments, there must be a list that keeps all enrollments.  */
-public class StudentEnrolmentList implements StudentEnrolmentManager {
+public class StudentEnrolmentList implements StudentEnrolmentManager{
     private Scanner userInput = new Scanner(System.in);
     private static StudentEnrolmentList enrolmentList;
     private StudentList students = StudentList.getInstance();
@@ -73,8 +73,15 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
     }
 
     public void delete() {
-        StudentEnrolment userInput = userInputEnrolment();
-        enrolments.remove(userInput);
+        try {
+            String studentId = userInput.nextLine();
+            String courseId = userInput.nextLine();
+            enrolments.removeIf(enrolment -> enrolment.getStudentID().equals(studentId)
+                    && enrolment.getCourseID().equals(courseId));
+        }
+        catch (Exception e){
+            System.out.println("Something wrong!!");
+        }
     }
 
     public StudentEnrolment userInputEnrolment() {
@@ -85,7 +92,7 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
         return new StudentEnrolment(student, course, semester);
     }
 
-    public void showCoursesOfStudent() {
+    public void coursesOfStudent() {
         System.out.print("Please type student id to check:");
         String studentId = userInput.nextLine();
         if (!isExistStudent(studentId)) {
@@ -103,7 +110,7 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
         }
     }
 
-    public void showStudentsOfCourse() {
+    public void studentsOfCourse() {
         System.out.print("Please type course id to check:");
         String courseId = userInput.nextLine();
         if (!isExistCourse(courseId)) {
@@ -121,6 +128,16 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
         }
     }
 
+    public void coursesOfSemester() {
+        System.out.print("Which semester do you want to check?:");
+        String semester = userInput.nextLine();
+        if(!isExistSemester(semester)){
+            System.out.println("Cannot find the semester");
+        }
+        else {
+            showCoursesOfSemester(semester);
+        }
+    }
 
     public Boolean isExistStudent(String studentId){
         for (StudentEnrolment enrolment : enrolments) {
@@ -152,15 +169,16 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
     public void showCourseList(String studentId, String semester){
         System.out.println("The course list:");
         List<Course> courses = new ArrayList<>();
-        for (StudentEnrolment enrolment : enrolments) {
+        for (StudentEnrolment enrolment : getAll()) {
             if (studentId.equals(enrolment.getStudentID()) && semester.equals(enrolment.getSemester())){
                 courses.add(enrolment.getCourse());
-                System.out.println("ID:"+ enrolment.getCourseID()
-                        + " Name:" + enrolment.getCourseName()
-                        + " Number of credit:" + enrolment.getCourse().getNumberOfCredit());
             }
         }
-        csvReport.coursesOfStudent(courses, semester);
+        System.out.println("CourseID CourseName NumberOfCredit");
+        for (Course course: courses){
+            System.out.println(course.getId()+" "+course.getName()+" "+ course.getNumberOfCredit() );
+        }
+        csvReport.coursesOfStudent(courses, "reports/CoursesOfStudentInSemester/"+semester+".csv" );
     }
 
     public void showStudentList(String courseId, String semester){
@@ -169,11 +187,28 @@ public class StudentEnrolmentList implements StudentEnrolmentManager {
         for (StudentEnrolment enrolment : enrolments) {
             if (courseId.equals(enrolment.getCourseID()) && semester.equals(enrolment.getSemester())){
                 students.add(enrolment.getStudent());
-                System.out.println("ID:"+ enrolment.getStudentID()
-                        + " Name:" + enrolment.getStudentName()
-                        + " Date of Birth:" + enrolment.getStudent().getBirthday());
             }
         }
+        System.out.println("StudentID StudentName Birthday");
+        for (Student student: students){
+            System.out.println(student.getId()+" "+student.getName()+" "+ student.getBirthday());
+        }
+        csvReport.studentsOfCourse(students, "reports/StudentsOfCourseInSemester/"+semester+".csv");
+    }
+
+    public void showCoursesOfSemester(String semester) {
+        System.out.println("The course list:");
+        List<Course> courses = new ArrayList<>();
+        for (StudentEnrolment enrolment : enrolments) {
+            if (semester.equals(enrolment.getSemester())){
+                courses.add(enrolment.getCourse());
+            }
+        }
+        System.out.println("CourseID CourseName NumberOfCredit");
+        for (Course course: courses){
+            System.out.println(course.getId()+" "+course.getName()+" "+ course.getNumberOfCredit() );
+        }
+        csvReport.coursesOfStudent(courses, "reports/CoursesOfferedInSemester/"+semester+".csv");
     }
 
     public void addExamples(StudentEnrolment sample){
