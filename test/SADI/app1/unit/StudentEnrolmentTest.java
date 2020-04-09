@@ -16,13 +16,13 @@ class StudentEnrolmentTest {
     @Test
     void getStudent() {
         // I expect the student information will not be changed after enrollment
-        assertEquals(new Student("s3634831", "Phuoc", "26/12/1998"), testEnrolment.getStudent());
+        assertEquals(testStudent, testEnrolment.getStudent());
     }
 
     @Test
     void getCourse() {
         // I expect the course information is true
-        assertEquals((new Course("COSC1111", "Intro", 24)),testEnrolment.getCourse());
+        assertEquals(testCourse,testEnrolment.getCourse());
     }
 
     @Test

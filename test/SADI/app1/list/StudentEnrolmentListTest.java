@@ -17,16 +17,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudentEnrolmentListTest {
     private static StudentEnrolmentList testList = new StudentEnrolmentList();
     private CSVreport csvReport = CSVreport.getInstance();
+    private static List<Course> mockCourseList = new ArrayList<>();
+    private static List<Student> mockStudentList = new ArrayList<>();
+    // to test CRUD, I let student1 and course1 be a global var
+    private static Student student1 = new Student("s123456", "Phuoc","26/12/1998");
+    private static Course course1 = new Course("a144433","SADI", 25);
+    private static StudentEnrolment enrolment1 = new StudentEnrolment(student1, course1 , "2019A");
     @BeforeAll
     public static void init(){
-        Student student1 = new Student("s123456", "Phuoc","26/12/1998");
         Student student2 = new Student("s123455", "An","12/12/1998");
         Student student3 = new Student("s345678", "Minh","1/12/1998");
-        Course course1 = new Course("a144433","SADI", 25);
+        mockStudentList.add(student1);
+        mockStudentList.add(student2);
+        mockStudentList.add(student3);
         Course course2 = new Course("a144233","SEPM", 25);
         Course course3 = new Course("a331221","PP1", 25);
         Course course4 = new Course("a456789", "PP2", 25);
-        StudentEnrolment enrolment1 = new StudentEnrolment(student1, course1 , "2019A");
+        mockCourseList.add(course1);
+        mockCourseList.add(course2);
+        mockCourseList.add(course3);
+        mockCourseList.add(course4);
         testList.addExamples(enrolment1);
         StudentEnrolment enrolment2 = new StudentEnrolment(student2, course2 , "2019A");
         testList.addExamples(enrolment2);
@@ -110,11 +120,9 @@ class StudentEnrolmentListTest {
             // I expect no enrollment contains both of these student id and course id
             String studentId = "s123456";
             String courseId = "a144433";
-            testList.enrolments.removeIf(enrolment -> enrolment.getStudentID().equals(studentId)
+            testList.getAll().removeIf(enrolment -> enrolment.getStudentID().equals(studentId)
                     && enrolment.getCourseID().equals(courseId));
-            assertFalse(testList.getAll().contains(new StudentEnrolment(
-                    new Student("s123456", "Phuoc","26/12/1998"),
-                    new Course("a144433","SADI", 25), "2019A")));
+            assertFalse(testList.getAll().contains(enrolment1));
         }
         catch (Exception e){
             System.out.println("Something wrong!!");
@@ -187,25 +195,22 @@ class StudentEnrolmentListTest {
 
     @Test
     void showCourseListTest() {
-        String mockStudentID = "s123456";
+        String mockStudentId = "s123456";
         String mockSemester = "2019A";
         System.out.println("The course list:");
         List<Course> courses = new ArrayList<>();
         for (StudentEnrolment enrolment : testList.getAll()) {
-            if (mockStudentID.equals(enrolment.getStudentID()) && mockSemester.equals(enrolment.getSemester())){
+            if (mockStudentId.equals(enrolment.getStudentID()) && mockSemester.equals(enrolment.getSemester())){
                 courses.add(enrolment.getCourse());
             }
         }
-        System.out.println("CourseID CourseName NumberOfCredit");
-        for (Course course: courses){
-            System.out.println(course.getId()+" "+course.getName()+" "+ course.getNumberOfCredit() );
-        }
-        csvReport.coursesOfStudent(courses, "reports/CoursesOfStudentInSemester/"+mockSemester+".csv" );
+        testList.showCoursesFormat(courses);
+        csvReport.coursesOfStudent(courses, "reports/CoursesOfStudentInSemester/"+mockStudentId+"_"+mockSemester+".csv" );
     }
 
     @Test
     void showStudentListTest() {
-        String mockCourseId = "s123456";
+        String mockCourseId = "a331221";
         String mockSemester = "2019A";
         System.out.println("The student list:");
         List<Student> students = new ArrayList<>();
@@ -214,11 +219,8 @@ class StudentEnrolmentListTest {
                 students.add(enrolment.getStudent());
             }
         }
-        System.out.println("StudentID StudentName Birthday");
-        for (Student student: students){
-            System.out.println(student.getId()+" "+student.getName()+" "+ student.getBirthday());
-        }
-        csvReport.studentsOfCourse(students, "reports/StudentsOfCourseInSemester/"+mockSemester+".csv");
+        testList.showStudentsFormat(students);
+        csvReport.studentsOfCourse(students, "reports/StudentsOfCourseInSemester/"+mockCourseId+"_"+mockSemester+".csv");
     }
 
     @Test
@@ -231,10 +233,7 @@ class StudentEnrolmentListTest {
                 courses.add(enrolment.getCourse());
             }
         }
-        System.out.println("CourseID CourseName NumberOfCredit");
-        for (Course course: courses){
-            System.out.println(course.getId()+" "+course.getName()+" "+ course.getNumberOfCredit() );
-        }
+        testList.showCoursesFormat(courses);
         csvReport.coursesOfStudent(courses, "reports/CoursesOfferedInSemester/"+mockSemester+".csv");
     }
 
@@ -247,5 +246,15 @@ class StudentEnrolmentListTest {
         testList.addExamples(exampleEnrolment);
         assertTrue(testList.getAll().contains(exampleEnrolment));
         System.out.println("Add successfully!!");
+    }
+
+    @Test
+    void showCoursesFormat(){
+        testList.showCoursesFormat(mockCourseList);
+    }
+
+    @Test
+    void showStudentsFormat(){
+        testList.showStudentsFormat(mockStudentList);
     }
 }

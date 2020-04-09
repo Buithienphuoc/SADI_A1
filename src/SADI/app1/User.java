@@ -44,6 +44,7 @@ public class User {
             /* 5. Prints all courses offered in 1 semester.*/
                     case 3:
                         enrolmentList.coursesOfSemester();
+                        break;
             /* 4. This functionality will basically add/update/delete into StudentEnrollment list.  */
                     case 4:
                         enrolmentList.update();
