@@ -9,17 +9,6 @@ public class Course extends AbstractUnit{
         this.numberOfCredit = numberOfCredit;
     }
 
-    @Override
-    public boolean equals(Object o){
-        // self check
-        if(this == o){ return true; } else
-            // null check
-            // field comparison
-            if(o == null){ return false;} else
-                // type check and cast
-                return getClass() == o.getClass();
-    }
-
     public String getId() {
         return id;
     }

@@ -74,7 +74,9 @@ public class StudentEnrolmentList implements StudentEnrolmentManager{
 
     public void delete() {
         try {
+            System.out.print("Type student id:");
             String studentId = userInput.nextLine();
+            System.out.print("Type course id:");
             String courseId = userInput.nextLine();
             enrolments.removeIf(enrolment -> enrolment.getStudentID().equals(studentId)
                     && enrolment.getCourseID().equals(courseId));
@@ -174,11 +176,8 @@ public class StudentEnrolmentList implements StudentEnrolmentManager{
                 courses.add(enrolment.getCourse());
             }
         }
-        System.out.println("CourseID CourseName NumberOfCredit");
-        for (Course course: courses){
-            System.out.println(course.getId()+" "+course.getName()+" "+ course.getNumberOfCredit() );
-        }
-        csvReport.coursesOfStudent(courses, "reports/CoursesOfStudentInSemester/"+semester+".csv" );
+        showCoursesFormat(courses);
+        csvReport.coursesOfStudent(courses, "reports/CoursesOfStudentInSemester/"+studentId+"_"+semester+".csv" );
     }
 
     public void showStudentList(String courseId, String semester){
@@ -189,29 +188,37 @@ public class StudentEnrolmentList implements StudentEnrolmentManager{
                 students.add(enrolment.getStudent());
             }
         }
-        System.out.println("StudentID StudentName Birthday");
-        for (Student student: students){
-            System.out.println(student.getId()+" "+student.getName()+" "+ student.getBirthday());
-        }
-        csvReport.studentsOfCourse(students, "reports/StudentsOfCourseInSemester/"+semester+".csv");
+        showStudentsFormat(students);
+        csvReport.studentsOfCourse(students, "reports/StudentsOfCourseInSemester/"+courseId+"_"+semester+".csv");
     }
 
     public void showCoursesOfSemester(String semester) {
         System.out.println("The course list:");
         List<Course> courses = new ArrayList<>();
         for (StudentEnrolment enrolment : enrolments) {
-            if (semester.equals(enrolment.getSemester())){
+            if (semester.equals(enrolment.getSemester())) {
                 courses.add(enrolment.getCourse());
             }
         }
-        System.out.println("CourseID CourseName NumberOfCredit");
-        for (Course course: courses){
-            System.out.println(course.getId()+" "+course.getName()+" "+ course.getNumberOfCredit() );
-        }
+        showCoursesFormat(courses);
         csvReport.coursesOfStudent(courses, "reports/CoursesOfferedInSemester/"+semester+".csv");
     }
 
     public void addExamples(StudentEnrolment sample){
         enrolments.add(sample);
+    }
+
+    public void showCoursesFormat(List<Course> courseList){
+        System.out.println("CourseID CourseName NumberOfCredit");
+        for (Course course: courseList){
+            System.out.println(course.getId()+" "+course.getName()+" "+ course.getNumberOfCredit() );
+        }
+    }
+
+    public void showStudentsFormat(List<Student> studentList){
+        System.out.println("StudentID StudentName Birthday");
+        for (Student student: studentList){
+            System.out.println(student.getId()+" "+student.getName()+" "+ student.getBirthday());
+        }
     }
 }
