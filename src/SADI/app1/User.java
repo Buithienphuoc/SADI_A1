@@ -37,7 +37,8 @@ public class User {
                     case 1:
                         enrolmentList.coursesOfStudent();
                         break;
-            /* 5. Print all students of 1 course in 1 semester. */
+            /* 5. Print all students of 1 course in 1 semester.
+            * 4. The system should list all courses of a student in a semester*/
                     case 2:
                         enrolmentList.studentsOfCourse();
                         break;
