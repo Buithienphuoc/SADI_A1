@@ -38,6 +38,7 @@ public class StudentEnrolmentList implements StudentEnrolmentManager{
     }
 
     public void update() {
+        // 4. ask allow delete or add new courses from the list.
         System.out.print(" 1 to Add Course for a student \n"
                 +" 2 to Delete:");
         String userChoice = userInput.nextLine();
