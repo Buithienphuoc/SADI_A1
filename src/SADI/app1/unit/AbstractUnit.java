@@ -1,8 +1,8 @@
 package SADI.app1.unit;
 
 public abstract class AbstractUnit {
-    public String id;
-    public String name;
+    protected String id;
+    protected String name;
 
     public AbstractUnit(String id, String name) {
         this.id = id;
